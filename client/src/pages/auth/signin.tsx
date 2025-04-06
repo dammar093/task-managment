@@ -67,7 +67,7 @@ const SignIn = () => {
     <section className="w-full h-screen flex items-center justify-center">
       <div className="w-full md:w-1/2  p-2 md:p-8">
         <Form onSubmit={handleSubmit}>
-          <div className="w-full max-w-md   rounded-lg flex flex-col gap-4">
+          <div className="w-full max-w-md p-6 bg-white rounded-lg flex flex-col gap-4 ">
             <h2 className="text-lg md:text-2xl font-semibold text-center uppercase">
               Sign In
             </h2>
