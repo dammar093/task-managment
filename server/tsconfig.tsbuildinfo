@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/controllers/auth.controller.ts","./src/controllers/task.controller.ts","./src/middlewares/veryfyjwt.ts","./src/routes/auth.routes.ts","./src/routes/tasks.routes.ts","./src/utils/apierror.ts","./src/utils/apiresponse.ts","./src/utils/asynchanler.ts"],"version":"5.7.2"}
