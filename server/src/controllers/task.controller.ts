@@ -57,7 +57,7 @@ export const createTask = asyncHander(async (req: Request, res: Response) => {
 //get all tasks controller
 export const getAllTasks = asyncHander(async (req: Request, res: Response) => {
   // @ts-ignore
-  const id = req.user.id;
+  const id = req.user;
   try {
     const tasks = await db.task.findMany({
       where: {

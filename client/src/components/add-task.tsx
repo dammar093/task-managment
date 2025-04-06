@@ -4,6 +4,8 @@ import Form from "./form";
 import Input from "./input";
 import { createTask } from "../api/task";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addTask } from "../redux/slices/taskSlice";
 
 interface AddTaskProps {
   setPopUp: (value: boolean) => void;
@@ -15,6 +17,7 @@ const AddTask: FC<AddTaskProps> = ({ setPopUp }) => {
   });
   const [isLoadin, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //submit task
   const handleSubmit = (e: React.FormEvent) => {
@@ -23,7 +26,8 @@ const AddTask: FC<AddTaskProps> = ({ setPopUp }) => {
     if (!formData.title?.trim() && !formData.description?.trim()) return;
     createTask(formData)
       .then((res) => {
-        console.log(res.data);
+        dispatch(addTask(res.data));
+        setPopUp(false);
         navigate("/");
       })
       .catch((err) => {

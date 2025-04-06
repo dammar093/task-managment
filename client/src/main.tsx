@@ -1,11 +1,14 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./App.tsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignUp from "./pages/auth/singup.tsx";
 import SignIn from "./pages/auth/signin.tsx";
 import Home from "./pages/home/home.tsx";
+import store from "./redux/store.ts";
+import Auth from "./components/authLayout.ts";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -13,7 +16,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <Auth>
+            <Home />
+          </Auth>
+        ),
       },
       {
         path: "/signup",
@@ -28,6 +35,8 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

@@ -1,5 +1,10 @@
+import { useNavigate } from "react-router-dom";
+import { logout } from "../api/auth";
+import Button from "./button";
+
 const Header = () => {
   const name = localStorage.getItem("name");
+  const navigate = useNavigate();
   return (
     <header className="w-full h-16 bg-blue-500">
       <div className="w-full h-full p-2 md:px-4 flex items-center justify-between">
@@ -11,6 +16,19 @@ const Header = () => {
         <div className="text-md font-semibold flex items-center gap-2">
           <p className="text-white">Hello,</p>
           <span className="text-slate-700 capitalize">{name}</span>
+          <div>
+            <Button
+              type="button"
+              title="Logout"
+              onClick={() => {
+                logout().then(() => {
+                  localStorage.removeItem("token");
+                  localStorage.removeItem("name");
+                  navigate("/signin");
+                });
+              }}
+            />
+          </div>
         </div>
       </div>
     </header>
