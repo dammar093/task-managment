@@ -6,7 +6,6 @@ import { db } from '..';
 export const createTask = asyncHander(async (req: Request, res: Response) => {
   // destructure the request body
   const { title, description } = req.body;
-  //@ts-ignore
   // check field are not empty
   if (!title || !description) {
     return res.status(400).json({
@@ -38,7 +37,7 @@ export const createTask = asyncHander(async (req: Request, res: Response) => {
         title,
         description,
         //@ts-ignore
-        userId: req.user.id,
+        userId: req?.user,
       },
     });
     return res.status(201).json({
