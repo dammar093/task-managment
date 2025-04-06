@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { logout } from "../api/auth";
 import Button from "./button";
+import { useDispatch } from "react-redux";
+import { setTasks } from "../redux/slices/taskSlice";
 
 const Header = () => {
   const name = localStorage.getItem("name");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <header className="w-full h-16 bg-blue-500">
       <div className="w-full h-full p-2 md:px-4 flex items-center justify-between">
@@ -22,6 +25,7 @@ const Header = () => {
               title="Logout"
               onClick={() => {
                 logout().then(() => {
+                  dispatch(setTasks([]));
                   localStorage.removeItem("token");
                   localStorage.removeItem("name");
                   navigate("/signin");

@@ -33,7 +33,7 @@ const Home = () => {
         console.error(err);
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [dispatch]);
   return (
     <section className="w-full h-full relative">
       <Header />
@@ -46,7 +46,7 @@ const Home = () => {
             <span>Loading...</span>
           </div>
         ) : (
-          <div className="w-full grid gap-2 grid-cols-1 md:grid-cols-4 lg:grid-cols-5 p-2">
+          <div className="w-full grid gap-2 grid-cols-1! md:grid-cols-5! xl:grid-cols-10 p-2">
             {tasks?.map((task: ITasks) => (
               <Card task={task} key={task?.id} />
             ))}
