@@ -68,7 +68,7 @@ const AddTask: FC<AddTaskProps> = ({ setPopUp }) => {
               className="w-full  border-gray-300 resize-none  focus:outline-none border-1 focus:border-blue-500 rounded-md text-sm"
               placeholder="Enter description."
               value={formData?.description}
-              onChange={(e) => handleDesctiption(e)}
+              onChange={(e) => handleDesctiption(e.target.value)}
             ></textarea>
           </div>
           <div className="w-full">
