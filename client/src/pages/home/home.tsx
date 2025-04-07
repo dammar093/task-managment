@@ -15,6 +15,7 @@ const Home = () => {
   const [popUp, setPopUp] = useState(false);
 
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const loading = useSelector((state: RootState) => state.tasks.loading);
   const handlePopUp = () => {
     setPopUp(true);
   };
@@ -28,11 +29,17 @@ const Home = () => {
             <Button type="button" title="Add task" onClick={handlePopUp} />
           </div>
 
-          <div className="w-full grid gap-2 grid-cols-1! md:grid-cols-5! xl:grid-cols-10 p-2">
-            {tasks?.map((task: ITasks) => (
-              <Card task={task} key={task?.id} />
-            ))}
-          </div>
+          {loading ? (
+            <div className=" h-[500px] w-full flex justify-center items-center">
+              <span className="text-slate-600 text-lg">Loading...</span>
+            </div>
+          ) : (
+            <div className="w-full grid gap-2 grid-cols-1! md:grid-cols-5! xl:grid-cols-10 p-2">
+              {tasks?.map((task: ITasks) => (
+                <Card task={task} key={task?.id} />
+              ))}
+            </div>
+          )}
         </main>
         {popUp && (
           <div className="absolute h-screen w-full bg-slate-950/70 top-0 flex justify-center items-center">

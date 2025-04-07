@@ -8,10 +8,12 @@ export interface Task {
 
 interface TasksState {
   tasks: Task[];
+  loading: boolean;
 }
 
 const initialState: TasksState = {
   tasks: [],
+  loading: false
 };
 
 const taskSlice = createSlice({
@@ -27,8 +29,11 @@ const taskSlice = createSlice({
     setTasks: (state, action: PayloadAction<Task[]>) => {
       state.tasks = action.payload
     },
+    setLoading: (state, action) => {
+      state.loading = action.payload
+    }
   },
 });
 
-export const { addTask, removeTask, setTasks } = taskSlice.actions;
+export const { addTask, removeTask, setTasks, setLoading } = taskSlice.actions;
 export default taskSlice.reducer
