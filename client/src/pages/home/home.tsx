@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddTask from "../../components/add-task";
 import Button from "../../components/button";
 import Card from "../../components/card";
 import Header from "../../components/header";
-import { getTasks } from "../../api/task";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { setTasks } from "../../redux/slices/taskSlice";
 
 export interface ITasks {
   title: string;
@@ -15,25 +13,12 @@ export interface ITasks {
 }
 const Home = () => {
   const [popUp, setPopUp] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const handlePopUp = () => {
     setPopUp(true);
   };
 
-  useEffect(() => {
-    setLoading(true);
-    getTasks()
-      .then((res) => {
-        console.log(res.data);
-        dispatch(setTasks(res.data));
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-      .finally(() => setLoading(false));
-  }, [dispatch]);
   return (
     tasks && (
       <section className="w-full h-full relative">
