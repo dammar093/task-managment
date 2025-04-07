@@ -6,6 +6,7 @@ import { createTask } from "../api/task";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addTask } from "../redux/slices/taskSlice";
+import Error from "./error";
 
 interface AddTaskProps {
   setPopUp: (value: boolean) => void;
@@ -15,10 +16,17 @@ const AddTask: FC<AddTaskProps> = ({ setPopUp }) => {
     title: "",
     description: "",
   });
+  const [error, setError] = useState("");
   const [isLoadin, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  // handle desctipion
+  const handleDesctiption = (value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      description: value,
+    }));
+  };
   //submit task
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,6 +40,7 @@ const AddTask: FC<AddTaskProps> = ({ setPopUp }) => {
       })
       .catch((err) => {
         console.error(err.response?.data?.message);
+        setError(err.response?.data?.message);
       })
       .finally(() => {
         setIsLoading(false);
@@ -41,6 +50,7 @@ const AddTask: FC<AddTaskProps> = ({ setPopUp }) => {
     <div className="w-full p-2 md:p-4 bg-white relative rounded-md ">
       <Form onSubmit={handleSubmit}>
         <div className="w-full flex flex-col gap-3">
+          <div className="w-full">{error && <Error error={error} />}</div>
           <div className="w-full">
             <Input
               type="text"
@@ -58,12 +68,7 @@ const AddTask: FC<AddTaskProps> = ({ setPopUp }) => {
               className="w-full  border-gray-300 resize-none  focus:outline-none border-1 focus:border-blue-500 rounded-md text-sm"
               placeholder="Enter description."
               value={formData?.description}
-              onChange={(e) => {
-                setFormData((prev) => ({
-                  ...prev,
-                  description: e.target.value,
-                }));
-              }}
+              onChange={(e) => handleDesctiption(e)}
             ></textarea>
           </div>
           <div className="w-full">
