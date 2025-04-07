@@ -17,7 +17,7 @@ const App = () => {
         console.error(err);
       })
       .finally(() => {
-        setLoading(false);
+        dispatch(setLoading(false));
       });
   }, [dispatch]);
   return <Outlet />;
