@@ -3,15 +3,19 @@ import { ITasks } from "../pages/home/home";
 import { deleteTask } from "../api/task";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeTask } from "../redux/slices/taskSlice";
 
 const Card = ({ task }: { task: ITasks }) => {
   const [loading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   //delete task
   const handleDelete = (id: string) => {
     setIsLoading(true);
     deleteTask(id)
-      .then(() => {
+      .then((res) => {
+        dispatch(removeTask(res.data?.id));
         navigate("/");
       })
       .finally(() => setIsLoading(false));
