@@ -28,12 +28,12 @@ This is a MERN Stack simple task asssessment for the checking skill and experien
 
 ## How to run server
 
-step 1: Open `bash` or `terminal`
-step 2: Clone the github respository using command `git clone https://github.com/dammar093/task-managment.git`
-step 3: Go to server folder using command `cd server folder`
-step 4: Install dependencies using command `npm i` or `npm install`
-step 5: Create `.env` file in the root directory
-step 6: Add
+- Open `bash` or `terminal`
+- Clone the github respository using command `git clone https://github.com/dammar093/task-managment.git`
+- Go to server folder using command `cd server folder`
+- Install dependencies using command `npm i` or `npm install`
+- Create `.env` file in the root directory
+- Add
 
 ```PORT = 8000
   CORS_ORIGIN = "*"
@@ -42,7 +42,8 @@ step 6: Add
 ```
 
 in your .env file
-step 7: Run the server using command `npm run dev`
+
+- Run the server using command `npm run dev`
 
 ## Modle
 
@@ -165,11 +166,11 @@ http://localhost:8000/api/v1/tasks/create (for create task)
     desctiption:"description",
     id:"weheiru49r043rp",
   },
-  message:"Tasks fetched successfully"
+  message:"Tasks created successfully"
 }
 ```
 
-http://localhost:8000/api/v1/tasks/:id (for get all task related user)
+http://localhost:8000/api/v1/tasks/:id (for delete task)
 
 #### Request Body Payload
 
@@ -187,6 +188,9 @@ http://localhost:8000/api/v1/tasks/:id (for get all task related user)
 }
 ```
 
+http://localhost:8000/api/v1/tasks/:id (for get all task related user)
+
+```
 {
 statusCode:201,
 data:{
@@ -194,21 +198,23 @@ title:"title",
 desctiption:"description",
 id:"weheiru49r043rp",
 },
-message:"Tasks created successfully"
+message:"Tasks fetched successfully"
 }
+```
 
 # How to run react app
 
-step 1: Open `bash` or `terminal`
-step 2: Clone the github respository using command `git clone https://github.com/dammar093/task-managment.git`
-step 3: Go to client folder using command `cd clinet  folder`
-step 4: Install dependencies using command `npm i` or `npm install`
-step 5: Create `.env` file in the root directory
-step 6: Add
+- Open `bash` or `terminal`
+- Clone the github respository using command `git clone https://github.com/dammar093/task-managment.git`
+- Go to client folder using command `cd clinet  folder`
+- Install dependencies using command `npm i` or `npm install`
+- Create `.env` file in the root directory
+- Add
 
 ```
 VITE_API_URL = https://task-managment-ppt9.onrender.com/api/v1
 ```
 
 in your .env file
-step 7: Run the client using command `npm run dev`
+
+- Run the client using command `npm run dev`
